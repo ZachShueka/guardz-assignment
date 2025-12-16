@@ -7,9 +7,10 @@ export const getDatabaseConfig = (
 ): TypeOrmModuleOptions => {
   const dbPath = configService.get<string>('DB_PATH', 'diary.db');
   // Resolve DB path relative to backend directory
-  const resolvedDbPath = dbPath.startsWith('/') || dbPath.match(/^[A-Z]:/) 
-    ? dbPath 
-    : resolve(__dirname, '../../', dbPath);
+  const resolvedDbPath =
+    dbPath.startsWith('/') || dbPath.match(/^[A-Z]:/)
+      ? dbPath
+      : resolve(__dirname, '../../', dbPath);
 
   return {
     type: 'sqlite',
@@ -18,4 +19,3 @@ export const getDatabaseConfig = (
     autoLoadEntities: true,
   };
 };
-

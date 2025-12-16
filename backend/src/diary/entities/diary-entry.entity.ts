@@ -23,14 +23,3 @@ export class DiaryEntry {
   @UpdateDateColumn()
   updatedAt: Date;
 }
-
-
-
-
-
-
-
-
-
-
-

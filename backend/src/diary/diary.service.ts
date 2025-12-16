@@ -29,7 +29,10 @@ export class DiaryService {
     id: string,
     updateDiaryEntryDto: UpdateDiaryEntryDto,
   ): Promise<DiaryEntry> {
-    const updatedEntry = await this.diaryRepository.update(id, updateDiaryEntryDto);
+    const updatedEntry = await this.diaryRepository.update(
+      id,
+      updateDiaryEntryDto,
+    );
 
     if (!updatedEntry) {
       throw new NotFoundException(`Diary entry with ID ${id} not found`);
@@ -46,5 +49,3 @@ export class DiaryService {
     }
   }
 }
-
-

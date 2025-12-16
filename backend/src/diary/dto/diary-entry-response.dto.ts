@@ -17,7 +17,8 @@ export class DiaryEntryResponseDto {
 
   @ApiProperty({
     description: 'The body content of the diary entry',
-    example: 'This is my first diary entry. I am excited to start documenting my thoughts and experiences.',
+    example:
+      'This is my first diary entry. I am excited to start documenting my thoughts and experiences.',
     type: String,
   })
   body: string;
@@ -36,6 +37,3 @@ export class DiaryEntryResponseDto {
   })
   updatedAt: Date;
 }
-
-
-

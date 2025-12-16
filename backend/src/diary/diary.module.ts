@@ -12,6 +12,3 @@ import { DiaryEntry } from './entities/diary-entry.entity';
   exports: [DiaryService],
 })
 export class DiaryModule {}
-
-
-

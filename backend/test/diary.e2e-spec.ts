@@ -50,20 +50,19 @@ describe('DiaryController (e2e)', () => {
 
   beforeEach(async () => {
     // Clean database before each test
-    const repository: Repository<DiaryEntry> = dataSource.getRepository(DiaryEntry);
+    const repository: Repository<DiaryEntry> =
+      dataSource.getRepository(DiaryEntry);
     await repository.clear();
   });
 
   describe('GET /entries', () => {
     it('should return an empty array when no entries exist', async () => {
-      await request(app.getHttpServer())
-        .get('/entries')
-        .expect(200)
-        .expect([]);
+      await request(app.getHttpServer()).get('/entries').expect(200).expect([]);
     });
 
     it('should return all diary entries sorted by createdAt DESC', async () => {
-      const repository: Repository<DiaryEntry> = dataSource.getRepository(DiaryEntry);
+      const repository: Repository<DiaryEntry> =
+        dataSource.getRepository(DiaryEntry);
 
       // Create test entries with different timestamps
       const entry1: DiaryEntry = repository.create({
@@ -97,7 +96,8 @@ describe('DiaryController (e2e)', () => {
     });
 
     it('should return entries with correct structure', async () => {
-      const repository: Repository<DiaryEntry> = dataSource.getRepository(DiaryEntry);
+      const repository: Repository<DiaryEntry> =
+        dataSource.getRepository(DiaryEntry);
 
       const entry: DiaryEntry = repository.create({
         topic: 'Test Entry',
@@ -261,7 +261,8 @@ describe('DiaryController (e2e)', () => {
 
   describe('PATCH /entries/:id', () => {
     it('should update an existing diary entry', async () => {
-      const repository: Repository<DiaryEntry> = dataSource.getRepository(DiaryEntry);
+      const repository: Repository<DiaryEntry> =
+        dataSource.getRepository(DiaryEntry);
 
       // Create an entry first
       const entry: DiaryEntry = repository.create({
@@ -301,4 +302,3 @@ describe('DiaryController (e2e)', () => {
     });
   });
 });
-

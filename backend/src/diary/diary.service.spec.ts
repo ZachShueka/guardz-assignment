@@ -6,7 +6,6 @@ import { DiaryEntry } from './entities/diary-entry.entity';
 import { CreateDiaryEntryDto } from './dto/create-diary-entry.dto';
 import { UpdateDiaryEntryDto } from './dto/update-diary-entry.dto';
 
-
 describe('DiaryService', () => {
   let service: DiaryService;
   let repository: DiaryRepository;

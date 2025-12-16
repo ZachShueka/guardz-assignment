@@ -34,7 +34,8 @@ export class DiaryController {
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({
     summary: 'Create a new diary entry',
-    description: 'Creates a new diary entry with topic and body. Both fields are required and must meet length requirements.',
+    description:
+      'Creates a new diary entry with topic and body. Both fields are required and must meet length requirements.',
   })
   @ApiBody({
     type: CreateDiaryEntryDto,
@@ -45,7 +46,8 @@ export class DiaryController {
     type: DiaryEntryResponseDto,
   })
   @ApiBadRequestResponse({
-    description: 'Invalid input data. Topic must be 3-25 characters, body must be 10-1000 characters.',
+    description:
+      'Invalid input data. Topic must be 3-25 characters, body must be 10-1000 characters.',
   })
   async create(
     @Body() createDiaryEntryDto: CreateDiaryEntryDto,
@@ -56,7 +58,8 @@ export class DiaryController {
   @Get()
   @ApiOperation({
     summary: 'Get all diary entries',
-    description: 'Retrieves all diary entries sorted by creation date (newest first).',
+    description:
+      'Retrieves all diary entries sorted by creation date (newest first).',
   })
   @ApiOkResponse({
     description: 'List of all diary entries',
@@ -92,7 +95,8 @@ export class DiaryController {
   @Patch(':id')
   @ApiOperation({
     summary: 'Update a diary entry',
-    description: 'Updates an existing diary entry. You can update topic, body, or both. All fields are optional.',
+    description:
+      'Updates an existing diary entry. You can update topic, body, or both. All fields are optional.',
   })
   @ApiParam({
     name: 'id',
@@ -110,7 +114,8 @@ export class DiaryController {
     type: DiaryEntryResponseDto,
   })
   @ApiBadRequestResponse({
-    description: 'Invalid input data. Topic must be 3-25 characters, body must be 10-1000 characters.',
+    description:
+      'Invalid input data. Topic must be 3-25 characters, body must be 10-1000 characters.',
   })
   @ApiNotFoundResponse({
     description: 'Diary entry with the specified ID was not found.',
@@ -145,6 +150,3 @@ export class DiaryController {
     return this.diaryService.remove(id);
   }
 }
-
-
-
