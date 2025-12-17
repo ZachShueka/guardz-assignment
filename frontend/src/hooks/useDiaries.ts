@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { diaryApi } from '../api/diary.api';
 import type { DiaryEntry, DiaryFormData } from '../shared/types/diary';
+import type { ApiError } from '../api/axiosInstance';
 
 export const useDiaries = () => {
   const [entries, setEntries] = useState<DiaryEntry[]>([]);
@@ -13,20 +14,16 @@ export const useDiaries = () => {
     setError(null);
     try {
       const data = await diaryApi.getAllEntries();
-
       setEntries(data);
     } catch (err) {
-      console.error('Failed to fetch entries:', err);
-
-      if (err instanceof Error && !err.message.includes('Network Error')) {
-        setError('Failed to load diary entries. Please try again later.');
-      }
+      const apiError = err as ApiError;
+      setError(apiError.message || 'Failed to load diary entries. Please try again later.');
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  const createEntry = useCallback(async (data: DiaryFormData): Promise<DiaryEntry> => {
+  const createEntry = useCallback(async (data: DiaryFormData): Promise<DiaryEntry | void> => {
     setIsSubmitting(true);
     setError(null);
     try {
@@ -34,15 +31,14 @@ export const useDiaries = () => {
       setEntries((prev) => [newEntry, ...prev]);
       return newEntry;
     } catch (err) {
-      console.error('Failed to create diary entry:', err);
-      setError('Failed to create diary entry. Please try again.');
-      throw err;
+      const apiError = err as ApiError;
+      setError(apiError.message || 'Failed to create diary entry. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   }, []);
 
-  const updateEntry = useCallback(async (id: string, data: DiaryFormData): Promise<DiaryEntry> => {
+  const updateEntry = useCallback(async (id: string, data: DiaryFormData): Promise<DiaryEntry | void> => {
     setIsSubmitting(true);
     setError(null);
     try {
@@ -52,9 +48,8 @@ export const useDiaries = () => {
       );
       return updatedEntry;
     } catch (err) {
-      console.error('Failed to update diary entry:', err);
-      setError('Failed to update diary entry. Please try again.');
-      throw err;
+      const apiError = err as ApiError;
+      setError(apiError.message || 'Failed to update diary entry. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -66,29 +61,22 @@ export const useDiaries = () => {
       await diaryApi.deleteEntry(id);
       setEntries((prev) => prev.filter((entry) => entry.id !== id));
     } catch (err) {
-      console.error('Failed to delete diary entry:', err);
-      setError('Failed to delete diary entry. Please try again.');
-      throw err;
+      const apiError = err as ApiError;
+      setError(apiError.message || 'Failed to delete diary entry. Please try again.');
     }
   }, []);
 
   const handleDiarySubmit = useCallback(
     async (editingEntry: DiaryEntry | null, data: DiaryFormData): Promise<void> => {
-      if (editingEntry) {
-        await updateEntry(editingEntry.id!, data);
+      if (editingEntry && editingEntry.id) {
+        await updateEntry(editingEntry.id, data);
       } else {
         await createEntry(data);
       }
     },
-    [createEntry, updateEntry, fetchEntries]
+    [createEntry, updateEntry]
   );
 
-  const handleDiaryDelete = useCallback(
-    async (id: string): Promise<void> => {
-      await deleteEntry(id);
-    },
-    [deleteEntry, fetchEntries]
-  );
 
   const clearError = useCallback(() => {
     setError(null);
@@ -108,7 +96,7 @@ export const useDiaries = () => {
     updateEntry,
     deleteEntry,
     handleDiarySubmit,
-    handleDiaryDelete,
+    handleDiaryDelete: deleteEntry,
     clearError,
   };
 };
