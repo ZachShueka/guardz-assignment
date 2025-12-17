@@ -10,7 +10,9 @@ export class CreateDiaryEntryDto {
     maxLength: 25,
     type: String,
   })
-  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  @Transform(({ value }: { value: unknown }): unknown =>
+    typeof value === 'string' ? value.trim() : value,
+  )
   @IsString({ message: 'Topic must be a string' })
   @IsNotEmpty({
     message: 'Topic is required and cannot be empty or only whitespace',
@@ -27,7 +29,9 @@ export class CreateDiaryEntryDto {
     maxLength: 1000,
     type: String,
   })
-  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
+  @Transform(({ value }: { value: unknown }): unknown =>
+    typeof value === 'string' ? value.trim() : value,
+  )
   @IsString({ message: 'Body must be a string' })
   @IsNotEmpty({
     message: 'Body is required and cannot be empty or only whitespace',
