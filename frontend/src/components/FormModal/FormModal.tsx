@@ -2,8 +2,9 @@ import { DiaryForm } from '../DiaryForm';
 import type { DiaryFormData } from '../../shared/types/diary';
 import { useFormModalContext } from '../../contexts';
 import { useDiariesContext } from '../../contexts';
+import { KEYBOARD_KEYS } from '../../shared/constants';
 import './FormModal.css';
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 
 export const FormModal = () => {
   const {
@@ -31,17 +32,17 @@ export const FormModal = () => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === KEYBOARD_KEYS.ESCAPE) {
       closeModal();
     }
-  };
+  }, [closeModal]);
 
   const handleFormSubmit = async (data: DiaryFormData) => {
     try {
       await handleDiarySubmit(editingEntry, data);
       closeModal();
-    } catch (error) {
+    } catch {
       closeModal();
     }
   };

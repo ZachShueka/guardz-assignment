@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import type { DiaryEntry } from '../../shared/types/diary';
 import { formatDate, truncateText } from '../../shared/utils';
+import { KEYBOARD_KEYS } from '../../shared/constants';
 import './DiaryCard.css';
 
 type DiaryCardProps = {
@@ -12,7 +13,7 @@ export const DiaryCard = ({ entry, onClick }: DiaryCardProps) => {
   
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === KEYBOARD_KEYS.ENTER || e.key === KEYBOARD_KEYS.SPACE) {
         e.preventDefault();
         onClick(entry);
       }
