@@ -1,9 +1,10 @@
+import { useCallback, useState } from 'react';
 import type { DiaryEntry } from '../../shared/types/diary';
-import { useFormModalContext } from '../../contexts';
-import { useDiariesContext } from '../../contexts';
+import { useFormModalContext, useDiariesContext } from '../../contexts';
 import { formatDate } from '../../shared/utils';
+import { KEYBOARD_KEYS } from '../../shared/constants';
+import { DeleteConfirmation } from '../DeleteConfirmation';
 import './DiaryModal.css';
-import { useCallback } from 'react';
 
 type EntryModalProps = {
   entry: DiaryEntry;
@@ -16,38 +17,44 @@ export const EntryModal = ({
 }: EntryModalProps) => {
   const { openModal } = useFormModalContext();
   const { handleDiaryDelete } = useDiariesContext();
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
-      }
-    },
-    [onClose]
-  );
+    }
+  }, [onClose]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      onClose();
-    }
-  },
-    [onClose]
-  );
+    if (e.key !== KEYBOARD_KEYS.ESCAPE) return;
+    
+      if (showDeleteConfirm) {
+        setShowDeleteConfirm(false);
+      } else {
+        onClose();
+      }
+    
+  }, [onClose, showDeleteConfirm]);
 
   const handleEdit = useCallback(() => {
     openModal(entry);
     onClose();
-  },
-    [entry, openModal, onClose]
-  );
+  }, [entry, openModal, onClose]);
 
-  const handleDelete = useCallback(() => {
-      if (entry.id && window.confirm('Are you sure you want to delete this entry? This action cannot be undone.')) {
-        handleDiaryDelete(entry.id);
-        onClose();
-      }
-  },
-    [entry.id, handleDiaryDelete, onClose]
-  );
+  const handleDeleteClick = useCallback(() => {
+    setShowDeleteConfirm(true);
+  }, []);
+
+  const handleCancelDelete = useCallback(() => {
+    setShowDeleteConfirm(false);
+  }, []);
+
+  const handleConfirmDelete = useCallback(() => {
+    if (entry.id) {
+      handleDiaryDelete(entry.id);
+      onClose();
+    }
+  }, [entry.id, handleDiaryDelete, onClose]);
 
   return (
     <div
@@ -81,22 +88,30 @@ export const EntryModal = ({
         </div>
 
         <div className="modal-actions">
-          <button
-            className="modal-action-button edit-button"
-            onClick={handleEdit}
-            aria-label="Edit entry"
-          >
-            ✏️ Edit
-          </button>
+          {!showDeleteConfirm ? (
+            <>
+              <button
+                className="modal-action-button edit-button"
+                onClick={handleEdit}
+                aria-label="Edit entry"
+              >
+                ✏️ Edit
+              </button>
 
-          <button
-            className="modal-action-button delete-button"
-            onClick={handleDelete}
-            aria-label="Delete entry"
-          >
-            🗑️ Delete
-          </button>
-
+              <button
+                className="modal-action-button delete-button"
+                onClick={handleDeleteClick}
+                aria-label="Delete entry"
+              >
+                🗑️ Delete
+              </button>
+            </>
+          ) : (
+            <DeleteConfirmation 
+              onConfirm={handleConfirmDelete} 
+              onCancel={handleCancelDelete} 
+            />
+          )}
         </div>
       </div>
     </div>
