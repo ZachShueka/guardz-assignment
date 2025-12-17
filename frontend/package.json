@@ -1,7 +1,8 @@
 {
-  "name": "frontend",
+  "name": "diary-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Diary application frontend built with React and TypeScript",
   "type": "module",
   "scripts": {
     "dev": "vite",
