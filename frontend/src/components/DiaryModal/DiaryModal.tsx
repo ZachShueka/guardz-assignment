@@ -2,7 +2,7 @@ import type { DiaryEntry } from '../../shared/types/diary';
 import { useFormModalContext } from '../../contexts';
 import { useDiariesContext } from '../../contexts';
 import { formatDate } from '../../shared/utils';
-import './EntryModal.css';
+import './DiaryModal.css';
 import { useCallback } from 'react';
 
 type EntryModalProps = {
