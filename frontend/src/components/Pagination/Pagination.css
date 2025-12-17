@@ -1,0 +1,87 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.25rem, 1vw, 0.5rem);
+  padding: clamp(0.75rem, 2vh, 1rem) 0;
+  border-top: 2px solid #f0f0f0;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  margin-top: auto;
+}
+
+.pagination-button {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: clamp(0.4rem, 1.5vh, 0.5rem) clamp(0.6rem, 2vw, 0.75rem);
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f9fafb;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-number {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: clamp(0.4rem, 1.5vh, 0.5rem) clamp(0.6rem, 2vw, 0.75rem);
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: clamp(2rem, 5vw, 2.5rem);
+  text-align: center;
+  font-family: inherit;
+}
+
+.pagination-number:hover {
+  background: #f9fafb;
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.pagination-number.active {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-color: #6366f1;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.pagination-number.active:hover {
+  background: linear-gradient(135deg, #5855eb 0%, #7c3aed 100%);
+}
+
+.pagination-ellipsis {
+  padding: clamp(0.4rem, 1.5vh, 0.5rem) 0.25rem;
+  color: #6b7280;
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
