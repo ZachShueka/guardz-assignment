@@ -6,7 +6,7 @@ export const getDatabaseConfig = (
   configService: ConfigService,
 ): TypeOrmModuleOptions => {
   const dbPath = configService.get<string>('DB_PATH', 'diary.db');
-  // Resolve DB path relative to backend directory
+
   const resolvedDbPath =
     dbPath.startsWith('/') || dbPath.match(/^[A-Z]:/)
       ? dbPath

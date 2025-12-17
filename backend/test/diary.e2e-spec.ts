@@ -49,7 +49,6 @@ describe('DiaryController (e2e)', () => {
   });
 
   beforeEach(async () => {
-    // Clean database before each test
     const repository: Repository<DiaryEntry> =
       dataSource.getRepository(DiaryEntry);
     await repository.clear();
@@ -64,7 +63,6 @@ describe('DiaryController (e2e)', () => {
       const repository: Repository<DiaryEntry> =
         dataSource.getRepository(DiaryEntry);
 
-      // Create test entries with different timestamps
       const entry1: DiaryEntry = repository.create({
         topic: 'First Entry',
         body: 'This is the first diary entry with enough text',
@@ -264,7 +262,6 @@ describe('DiaryController (e2e)', () => {
       const repository: Repository<DiaryEntry> =
         dataSource.getRepository(DiaryEntry);
 
-      // Create an entry first
       const entry: DiaryEntry = repository.create({
         topic: 'Original Topic',
         body: 'This is the original body text with enough characters',
