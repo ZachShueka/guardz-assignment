@@ -68,7 +68,7 @@ export const useDiaries = () => {
 
   const handleDiarySubmit = useCallback(
     async (editingEntry: DiaryEntry | null, data: DiaryFormData): Promise<void> => {
-      if (editingEntry && editingEntry.id) {
+      if (editingEntry !== null) {
         await updateEntry(editingEntry.id, data);
       } else {
         await createEntry(data);
@@ -100,4 +100,3 @@ export const useDiaries = () => {
     clearError,
   };
 };
-

@@ -38,7 +38,7 @@ export class DiaryRepository {
       ...updateDiaryEntryDto,
     });
 
-    if (!entry) {
+    if (entry === undefined) {
       return null;
     }
 
