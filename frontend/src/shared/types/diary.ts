@@ -1,5 +1,5 @@
 export type DiaryEntry = {
-  id?: string;
+  id: string;
   topic: string;
   body: string;
   createdAt?: string;
