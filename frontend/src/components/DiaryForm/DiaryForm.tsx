@@ -35,16 +35,12 @@ export const DiaryForm = ({
 
   const onFormSubmit = useCallback(
     async (data: DiaryFormData) => {
-      try {
-        const trimmedData: DiaryFormData = {
-          topic: data.topic.trim(),
-          body: data.body.trim(),
-        };
-        await onSubmit(trimmedData);
-        reset();
-      } catch (error) {
-        console.error('Failed to submit diary entry:', error);
-      }
+      const trimmedData: DiaryFormData = {
+        topic: data.topic.trim(),
+        body: data.body.trim(),
+      };
+      await onSubmit(trimmedData);
+      reset();
     },
     [onSubmit, reset]
   );
@@ -58,31 +54,33 @@ export const DiaryForm = ({
         subtitle="Share your thoughts and experiences"
       />
 
-      <FormField<DiaryFormData>
-        id="topic"
-        name="topic"
-        label="Topic"
-        placeholder="What's on your mind?"
-        register={register}
-        control={control}
-        errors={errors}
-        disabled={isFormBusy}
-        maxLength={MAX_TOPIC_LENGTH}
-      />
+      <fieldset disabled={isFormBusy} className="form-fieldset">
+        <FormField<DiaryFormData>
+          id="topic"
+          name="topic"
+          label="Topic"
+          placeholder="What's on your mind?"
+          register={register}
+          control={control}
+          errors={errors}
+          disabled={isFormBusy}
+          maxLength={MAX_TOPIC_LENGTH}
+        />
 
-      <FormField<DiaryFormData>
-        id="body"
-        name="body"
-        label="Entry"
-        placeholder="Write your thoughts here..."
-        register={register}
-        control={control}
-        errors={errors}
-        disabled={isFormBusy}
-        maxLength={MAX_BODY_LENGTH}
-        isTextarea
-        rows={8}
-      />
+        <FormField<DiaryFormData>
+          id="body"
+          name="body"
+          label="Entry"
+          placeholder="Write your thoughts here..."
+          register={register}
+          control={control}
+          errors={errors}
+          disabled={isFormBusy}
+          maxLength={MAX_BODY_LENGTH}
+          isTextarea
+          rows={8}
+        />
+      </fieldset>
 
       <SubmitButton isLoading={isFormBusy} />
     </form>

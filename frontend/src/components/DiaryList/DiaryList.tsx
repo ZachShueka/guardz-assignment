@@ -46,15 +46,15 @@ export const DiaryList = () => {
 
   return (
     <>
-      <div className="diary-list-container">
+      <section className="diary-list-container">
         {error && <ErrorBanner message={error} onDismiss={clearError} />}
-        <div className="list-header">
+        <header className="list-header">
           <h2>Your Diary Entries</h2>
           <span className="entry-count">{entries.length} {entries.length === 1 ? 'entry' : 'entries'}</span>
-        </div>
+        </header>
         <div className="entries-grid">
           {paginatedEntries.map((entry: DiaryEntry) => (
-            <DiaryCard key={entry.id || Math.random()} entry={entry} onClick={handleEntryClick} />
+            <DiaryCard key={entry.id} entry={entry} onClick={handleEntryClick} />
           ))}
         </div>
 
@@ -64,7 +64,7 @@ export const DiaryList = () => {
           onPageChange={handlePageChange}
           pageNumbers={pageNumbers}
         />
-      </div>
+      </section>
 
       { isDiaryCardModalOpen && selectedEntry && <EntryModal
         entry={selectedEntry}
