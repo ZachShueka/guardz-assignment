@@ -17,7 +17,7 @@ import { getDatabaseConfig } from './config/database.config';
       useFactory: getDatabaseConfig,
       inject: [ConfigService],
     }),
-    
+
     DiaryModule,
   ],
 })

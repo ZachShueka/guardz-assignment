@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Patch,
+  Delete,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DiaryService } from './diary.service';
 import { CreateDiaryEntryDto } from './dto/create-diary-entry.dto';
@@ -9,11 +17,13 @@ import * as Docs from './diary.decorators';
 @ApiTags('diary')
 @Controller('entries')
 export class DiaryController {
-  constructor(private readonly diaryService: DiaryService) { }
+  constructor(private readonly diaryService: DiaryService) {}
 
   @Post()
   @Docs.ApiDiaryCreate()
-  async create(@Body() createDto: CreateDiaryEntryDto): Promise<DiaryEntryResponseDto> {
+  async create(
+    @Body() createDto: CreateDiaryEntryDto,
+  ): Promise<DiaryEntryResponseDto> {
     return this.diaryService.create(createDto);
   }
 
@@ -31,7 +41,10 @@ export class DiaryController {
 
   @Patch(':id')
   @Docs.ApiDiaryUpdate()
-  async update(@Param('id') id: string, @Body() updateDto: UpdateDiaryEntryDto): Promise<DiaryEntryResponseDto> {
+  async update(
+    @Param('id') id: string,
+    @Body() updateDto: UpdateDiaryEntryDto,
+  ): Promise<DiaryEntryResponseDto> {
     return this.diaryService.update(id, updateDto);
   }
 

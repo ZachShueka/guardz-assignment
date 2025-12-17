@@ -47,7 +47,7 @@ export class DiaryRepository {
 
   async remove(id: string): Promise<boolean> {
     const result = await this.typeOrmRepository.delete(id);
-    
+
     return !!result.affected;
   }
 }
