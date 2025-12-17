@@ -1,6 +1,6 @@
 import './FormHeader.css';
 
-interface FormHeaderProps {
+type FormHeaderProps ={
   title: string;
   subtitle: string;
 }

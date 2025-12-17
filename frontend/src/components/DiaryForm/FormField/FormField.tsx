@@ -3,7 +3,7 @@ import type { UseFormRegister, FieldErrors, FieldValues, Path, Control } from 'r
 import './FormField.css';
 import { useMemo } from 'react';
 
-interface FormFieldProps<T extends FieldValues> {
+type FormFieldProps<T extends FieldValues> = {
   id: string;
   name: Path<T>;
   label: string;

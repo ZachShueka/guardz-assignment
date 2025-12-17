@@ -1,6 +1,6 @@
 import './SubmitButton.css';
 
-interface SubmitButtonProps {
+type SubmitButtonProps = {
   isLoading: boolean;
   disabled?: boolean;
   label?: string;
