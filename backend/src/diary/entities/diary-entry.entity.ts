@@ -11,15 +11,15 @@ export class DiaryEntry {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 25 })
+  @Column({ name: 'topic', type: 'varchar', length: 25 })
   topic: string;
 
-  @Column({ type: 'text' })
+  @Column({ name: 'body', type: 'text' })
   body: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }
