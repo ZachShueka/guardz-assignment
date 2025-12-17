@@ -1,0 +1,41 @@
+.diary-list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: clamp(2rem, 8vh, 4rem) clamp(1rem, 4vw, 2rem);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon {
+  font-size: clamp(3rem, 10vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.empty-state p {
+  margin: 0;
+  color: #6b7280;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+
