@@ -12,15 +12,21 @@ import { DiaryService } from './diary.service';
 import { CreateDiaryEntryDto } from './dto/create-diary-entry.dto';
 import { UpdateDiaryEntryDto } from './dto/update-diary-entry.dto';
 import { DiaryEntryResponseDto } from './dto/diary-entry-response.dto';
-import * as Docs from './diary.decorators';
+import {
+  ApiDiaryCreate,
+  ApiDiaryFindAll,
+  ApiDiaryFindOne,
+  ApiDiaryUpdate,
+  ApiDiaryDelete,
+} from './diary.decorators';
 
 @ApiTags('diary')
 @Controller('entries')
 export class DiaryController {
-  constructor(private readonly diaryService: DiaryService) {}
+  constructor(private readonly diaryService: DiaryService) { }
 
   @Post()
-  @Docs.ApiDiaryCreate()
+  @ApiDiaryCreate()
   async create(
     @Body() createDto: CreateDiaryEntryDto,
   ): Promise<DiaryEntryResponseDto> {
@@ -28,19 +34,19 @@ export class DiaryController {
   }
 
   @Get()
-  @Docs.ApiDiaryFindAll()
+  @ApiDiaryFindAll()
   async findAll(): Promise<DiaryEntryResponseDto[]> {
     return this.diaryService.findAll();
   }
 
   @Get(':id')
-  @Docs.ApiDiaryFindOne()
+  @ApiDiaryFindOne()
   async findOne(@Param('id') id: string): Promise<DiaryEntryResponseDto> {
     return this.diaryService.findOne(id);
   }
 
   @Patch(':id')
-  @Docs.ApiDiaryUpdate()
+  @ApiDiaryUpdate()
   async update(
     @Param('id') id: string,
     @Body() updateDto: UpdateDiaryEntryDto,
@@ -49,7 +55,7 @@ export class DiaryController {
   }
 
   @Delete(':id')
-  @Docs.ApiDiaryDelete()
+  @ApiDiaryDelete()
   async remove(@Param('id') id: string): Promise<void> {
     return this.diaryService.remove(id);
   }
