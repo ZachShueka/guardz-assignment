@@ -1,7 +1,8 @@
 {
-  "name": "frontend",
+  "name": "diary-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Diary application frontend built with React and TypeScript",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,8 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "axios": "^1.13.2",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.68.0",
+    "zod": "^4.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

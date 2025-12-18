@@ -1,0 +1,149 @@
+.form-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  animation: fadeIn 0.2s ease;
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.form-modal-content {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: min(600px, 95vw);
+  width: 100%;
+  max-height: min(90vh, 100%);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: slideUp 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.form-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(1rem, 2.5vh, 1.25rem) clamp(1.25rem, 3vw, 1.5rem);
+  border-bottom: 2px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.form-modal-header h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.form-modal-close {
+  background: #f3f4f6;
+  border: none;
+  width: clamp(32px, 6vw, 36px);
+  height: clamp(32px, 6vw, 36px);
+  border-radius: 8px;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.form-modal-close:hover {
+  background: #e5e7eb;
+  color: #1a1a1a;
+}
+
+.form-modal-close:active {
+  transform: scale(0.95);
+}
+
+.form-modal-body {
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.form-modal-body .diary-form {
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.form-modal-body .diary-form .form-header {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .form-modal-backdrop {
+    padding: 0.5rem;
+  }
+
+  .form-modal-content {
+    max-height: 95vh;
+    max-width: 95vw;
+  }
+
+  .form-modal-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .form-modal-body .diary-form {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-modal-backdrop {
+    padding: 0.25rem;
+  }
+
+  .form-modal-content {
+    max-height: 98vh;
+    border-radius: 12px;
+  }
+
+  .form-modal-header {
+    padding: 0.875rem 1rem;
+  }
+
+  .form-modal-body .diary-form {
+    padding: 1rem;
+  }
+}
+
+
