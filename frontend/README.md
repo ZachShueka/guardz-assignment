@@ -4,7 +4,6 @@ A modern, responsive web application for writing and managing personal diary ent
 
 ## Features
 
-- **Responsive Design**: Mobile-first UI that works on all screen sizes.
 - **State Management**: React Context API for predictable state flow.
 - **Forms**: Robust form handling with `react-hook-form` and `zod` validation.
 - **API Layer**: Centralized Axios instance with automatic error normalization.
@@ -47,5 +46,4 @@ A modern, responsive web application for writing and managing personal diary ent
 - **Framework**: [React 19](https://react.dev/)
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Validation**: [Zod](https://zod.dev/)
-- **Styling**: CSS Modules / Modern CSS
 - **HTTP Client**: [Axios](https://axios-http.com/)

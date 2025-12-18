@@ -51,9 +51,15 @@ If you prefer to run without Docker:
 
 ## Key Technical Decisions
 
-- **Clean Architecture**: Follows a strict separation of concerns to ensure maintainability.
-- **Type Safety**: End-to-end TypeScript usage for catching errors at compile time.
-- **Error Normalization**: Unified error handling across the stack for consistent user feedback.
 - **Local Database**: Used SQLite to ensure the project works out-of-the-box without external dependencies.
+
+> **Disclaimer – Environment Variables**  
+> The `.env` file is intentionally included in this repository **only for the purpose of this home assignment**, to allow immediate setup and evaluation without additional configuration.  
+> The values contain **no sensitive or production secrets**.  
+> In a real-world or production environment, environment files would be excluded from version control and managed securely.
+
+> **Disclaimer – Database Schema Synchronization**  
+> The database configuration uses `synchronize: true` to automatically align the schema during development, simplifying setup and reducing boilerplate for this assignment.  
+> T
 
 

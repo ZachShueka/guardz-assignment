@@ -8,7 +8,7 @@ A RESTful API for managing personal diary entries, built with NestJS and TypeORM
 - **Validation**: Strict input validation using `class-validator` and `class-transformer`.
 - **Database**: SQLite for lightweight, local development (zero configuration required).
 - **Swagger Documentation**: Interactive API documentation available at `/api`.
-- **Testing**: Comprehensive Unit and E2E tests using Jest.
+- **Testing**: E2E tests using Jest.
 - **Clean Architecture**: Repository-Service-Controller pattern.
 
 ## Prerequisites
@@ -24,7 +24,7 @@ A RESTful API for managing personal diary entries, built with NestJS and TypeORM
    ```
 
 2. **Environment Variables**:
-   Create a `.env` file in the backend root directory (or parent directory if running locally without Docker) with the following:
+   Create a `.env` file in the backend root directory with the following:
    ```env
    PORT=3000
    FRONTEND_URL=http://localhost:5173
@@ -35,27 +35,13 @@ A RESTful API for managing personal diary entries, built with NestJS and TypeORM
    ```bash
    # Development mode
    npm run start:dev
-
-   # Production mode
-   npm run start:prod
    ```
-
-## API Documentation
-
-Once the server is running, you can access the Swagger UI at:
-`http://localhost:3000/api`
 
 ## Testing
 
 ```bash
-# Unit tests
-npm run test
-
 # E2E tests
 npm run test:e2e
-
-# Test coverage
-npm run test:cov
 ```
 
 ## Tech Stack
