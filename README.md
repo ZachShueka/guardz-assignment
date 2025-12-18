@@ -59,7 +59,4 @@ If you prefer to run without Docker:
 > In a real-world or production environment, environment files would be excluded from version control and managed securely.
 
 > **Disclaimer – Database Schema Synchronization**  
-> The database configuration uses `synchronize: true` to automatically align the schema during development, simplifying setup and reducing boilerplate for this assignment.  
-> T
-
-
+> The database configuration uses `synchronize: true` to automatically align the schema during development, simplifying setup and reducing boilerplate for this assignment.
