@@ -17,5 +17,6 @@ export const getDatabaseConfig = (
     database: resolvedDbPath,
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
     autoLoadEntities: true,
+    synchronize: true,
   };
 };
